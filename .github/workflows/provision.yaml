@@ -48,5 +48,5 @@ jobs:
       run: install/toolkit provision apply --plan
     
     - name: Apply changes on merge to master
-      run: install/toolkit provision apply --aprove
+      run: install/toolkit provision apply --approve
       if: github.event_name == 'push'
