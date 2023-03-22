@@ -43,8 +43,14 @@ jobs:
       
     - name: Plan on pull request
       if: github.event_name == 'pull_request'
-      run: install/toolkit provision apply --plan
+      run: install/toolkit provision apply --plan | tee plan.log
     
     - name: Apply changes on merge to master
-      run: install/toolkit provision apply --approve
+      run: install/toolkit provision apply --approve | tee plan.log
       if: github.event_name == 'push'
+
+    - name: Create comment
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body-file: 'plan.log'
