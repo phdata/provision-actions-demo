@@ -14,6 +14,7 @@ env:
   SNOWFLAKE_URL: ${{ secrets.snowflake_url }}
   SNOWFLAKE_PRIVATE_KEY_FILE: ${{ vars.snowflake_private_key_file }}
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
