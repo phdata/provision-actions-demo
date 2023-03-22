@@ -18,3 +18,4 @@ entries:
     email: testuser2@phdata.io
     password: "<REPLACE WITH PASSWORD>"
     must_change_password: true
+
