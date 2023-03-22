@@ -37,7 +37,6 @@ jobs:
       
     - name: Plan on pull request
       if: github.event_name == 'pull_request'
-      uses: actions/setup-java@v3
       run: install/toolkit provision apply --plan
     
     - name: Apply changes on merge to master
