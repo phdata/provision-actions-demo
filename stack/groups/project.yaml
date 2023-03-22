@@ -9,3 +9,5 @@ entries:
     warehouse_size: SMALL
   - project_name: manhattan
     env: dev
+  - project_name: manhattan
+    env: qa
