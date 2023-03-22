@@ -1,0 +1,45 @@
+name: Snowflake Provisioning
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  TOOLKIT_AUTH_TOKEN: ${{ secrets.toolkit_auth_token }}
+  TOOLKIT_CLI_DOWNLOAD_URL: ${{ secrets.toolkit_cli_download_url }}
+  TOOLKIT_CLI_VERSION: "0.10.0"
+  SNOWFLAKE_PRIVATE_KEY_PEM: ${{ secrets.snowflake_private_key_pem }}
+  SNOWFLAKE_USER: ${{ variables.snowflake_user }}
+  SNOWFLAKE_URL: ${{ secrets.snowflake_url }}
+  SNOWFLAKE_PRIVATE_KEY_FILE: ${{ variables.snowflake_private_key_file }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download the toolkit-cli
+      run: bin/install-toolkit-cli
+      shell: bash
+
+    - name: Write Snowflake private key
+      run: |
+       (umask  077 ; echo $SNOWFLAKE_PRIVATE_KEY_PEM | base64 --decode > /tmp/snowboarder_it.p8)
+       echo "SNOWFLAKE_PRIVATE_KEY_FILE=/tmp/snowboarder_it.p8" >> $GITHUB_ENV
+      shell: bash
+  
+    - name: Set up Java 
+      uses: actions/setup-java@v3
+      with:
+        java-version: 11
+        distribution: corretto
+      
+    - name: Plan on pull request
+      if: github.event_name == 'pull_request'
+      uses: actions/setup-java@v3
+      run: install/toolkit provision apply--plan
+    
+    - name: Apply changes on merge to master
+      run: install/toolkit provision apply --aprove
+      if: github.event_name == 'pull_request' && github.event.pull_request.merged && github.head_ref == 'master'
