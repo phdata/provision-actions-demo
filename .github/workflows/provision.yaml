@@ -49,4 +49,4 @@ jobs:
     
     - name: Apply changes on merge to master
       run: install/toolkit provision apply --aprove
-      if: github.ref == 'refs/heads/master'
+      if: github.event_name == 'push'
