@@ -1,4 +1,4 @@
-= Toolkit CLI Github Actions Example
+# Toolkit CLI Github Actions Example
 
 
 ![](provision-cicd.svg)
