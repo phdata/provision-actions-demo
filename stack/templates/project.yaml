@@ -7,7 +7,7 @@ privilegeGrants:
     objectType: DATABASE
     objectName: "{{env}}_{{project_name}}"
     roleName: "{{env}}_{{project_name}}_RW"
-    grantOption: false 
+    grantOption: false
   - privilege: "USAGE"
     objectType: DATABASE
     objectName: "{{env}}_{{project_name}}"
@@ -30,19 +30,7 @@ privilegeGrants:
     objectType: SCHEMA
     objectName: "{{env}}_{{project_name}}.CURATED"
     roleName: "{{env}}_{{project_name}}_RW"
-    grantOption: false 
-  - privilege: "SELECT"
-    objectType: "future tables in schema"
-    objectName: "{{env}}_{{project_name}}.RAW"
-    roleName: "{{env}}_{{project_name}}_RO"
-  - privilege: "SELECT"
-    objectType: "future tables in schema"
-    objectName: "{{env}}_{{project_name}}.STAGING"
-    roleName: "{{env}}_{{project_name}}_RO"
-  - privilege: "SELECT"
-    objectType: "future tables in schema"
-    objectName: "{{env}}_{{project_name}}.CURATED"
-    roleName: "{{env}}_{{project_name}}_RO"
+    grantOption: false
   - privilege: "USAGE"
     objectType: WAREHOUSE
     objectName: "{{env}}_{{project_name}}"
@@ -66,4 +54,3 @@ roleGrants:
   - name: "{{env}}_{{project_name}}_RO"
     toRoles:
       - "{{env}}_{{project_name}}_RW"
-
