@@ -4,4 +4,7 @@ defaults:
   size: XSMALL
 entries:
   - name: USER_WH1
-    size: XSMALL
+  - name: ACCESS_TOOL
+    size: LARGE
+  - name: ADVISOR_TOOL
+    size: LARGE
