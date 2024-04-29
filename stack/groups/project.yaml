@@ -13,3 +13,5 @@ entries:
     env: prod
   - project_name: advisor_demo
     env: prod
+  - project_name: research
+    env: dev

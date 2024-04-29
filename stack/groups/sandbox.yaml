@@ -4,3 +4,4 @@ entries:
   - sandbox_name: poc1
   - sandbox_name: poc2
     warehouse_size: SMALL
+  - sandbox_name: marketing
