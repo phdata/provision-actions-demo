@@ -32,15 +32,18 @@ privilegeGrants:
     roleName: "{{env}}_{{project_name}}_RW"
     grantOption: false 
   - privilege: "SELECT"
-    objectType: "future tables in schema"
+    objectType: "tables in schema"
+    future: true
     objectName: "{{env}}_{{project_name}}.RAW"
     roleName: "{{env}}_{{project_name}}_RO"
   - privilege: "SELECT"
-    objectType: "future tables in schema"
+    objectType: "tables in schema"
+    future: true
     objectName: "{{env}}_{{project_name}}.STAGING"
     roleName: "{{env}}_{{project_name}}_RO"
   - privilege: "SELECT"
-    objectType: "future tables in schema"
+    objectType: "tables in schema"
+    future: true
     objectName: "{{env}}_{{project_name}}.CURATED"
     roleName: "{{env}}_{{project_name}}_RO"
   - privilege: "USAGE"
