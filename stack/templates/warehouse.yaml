@@ -1,4 +1,4 @@
-# Template for sandalone warehouses
+# Template for standalone warehouses
 roles:
   - name: "{{ name }}"
 warehouses:
