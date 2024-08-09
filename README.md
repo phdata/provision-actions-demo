@@ -1,4 +1,3 @@
-# Toolkit CLI Github Actions Example
-
+# Provision Tool GitHub Actions Example
 
 ![](provision-cicd.svg)
