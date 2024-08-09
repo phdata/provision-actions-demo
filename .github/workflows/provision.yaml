@@ -26,11 +26,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Download the toolkit-cli
-      shell: bash
       run: bin/install-toolkit-cli
 
+    - name: Add toolkit-cli to PATH
+      run: readlink -f install >> $GITHUB_PATH
+
     - name: Write Snowflake private key
-      shell: bash
       run: |
        (umask  077 ; echo $SNOWFLAKE_PRIVATE_KEY_PEM | base64 --decode > /tmp/snowboarder_it.p8)
        echo "SNOWFLAKE_PRIVATE_KEY_FILE=/tmp/snowboarder_it.p8" >> $GITHUB_ENV
@@ -43,17 +44,8 @@ jobs:
       
     - name: Plan on pull request
       if: github.event_name == 'pull_request'
-      shell: bash
-      run: install/toolkit provision apply --plan | tee plan.log
+      run: toolkit provision apply --plan
     
     - name: Apply changes on merge to master
-      shell: bash
-      run: install/toolkit provision apply --approve | tee plan.log
+      run: toolkit provision apply
       if: github.event_name == 'push'
-
-    - name: Create comment
-      uses: peter-evans/create-or-update-comment@v2
-      if: github.event_name == 'pull_request'
-      with:
-        issue-number: ${{ github.event.pull_request.number }}
-        body-file: 'plan.log'
